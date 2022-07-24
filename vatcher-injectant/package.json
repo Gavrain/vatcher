@@ -1,0 +1,21 @@
+{
+	"name": "vatcher-injectant",
+	"version": "0.0.0",
+	"description": "The JavaScript Code will inject into page monitored.",
+	"main": "main.js",
+	"scripts": {
+		"build": "rollup -c",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"front-end",
+		"monitor"
+	],
+	"author": "Gavrain",
+	"license": "MIT",
+	"devDependencies": {
+		"rollup-plugin-commonjs": "^10.1.0",
+		"rollup-plugin-node-resolve": "^5.2.0"
+	},
+	"dependencies": {}
+}
