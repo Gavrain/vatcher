@@ -77,39 +77,39 @@ export default {
 <style lang="less" scoped>
 .Mymenu {
   height: 100%;
-  width: 250px;
+  width: 13.8889rem;
   background-color: #f1f3f7;
-  border-right: 1px solid var(--el-border-color);
+  border-right: .0556rem solid var(--el-border-color);
 
   // 修改下拉矩形框的样式
   :deep(ul.el-menu.el-menu--inline) {
-    padding: 10px 0 5px 0;
-    border-radius: 5px;
+    padding: .5556rem 0 .2778rem 0;
+    border-radius: .2778rem;
   }
 
   // 标题盒子
   .box {
     display: flex;
     align-items: center;
-    height: 50px;
-    padding-top: 15px;
-    padding-left: 45px;
+    height: 2.7778rem;
+    padding-top: .8333rem;
+    padding-left: 2.5rem;
 
     .menu-title {
-      font-size: 18px;
+      font-size: 1rem;
       font-weight: 400;
-      margin-left: 15px;
+      margin-left: .8333rem;
       text-align: center;
     }
 
     .el-icon {
-      font-size: 18px;
+      font-size: 1rem;
     }
   }
 
   // 菜单栏
   .el-menu {
-    padding: 0 10px;
+    padding: 0 .5556rem;
     height: 100%;
     background-color: #f1f3f7;
     border: 0;
@@ -120,7 +120,7 @@ export default {
       // 选中
       &.is-active {
         background-color: #fff;
-        border-radius: 5px;
+        border-radius: .2778rem;
       }
     }
 
@@ -129,8 +129,8 @@ export default {
 
       // 复合标签内的单标签
       .el-menu-item {
-        margin: 8px 10px;
-        border-radius: 5px;
+        margin: .4444rem .5556rem;
+        border-radius: .2778rem;
 
         &:first-child {
           margin-top: 0;

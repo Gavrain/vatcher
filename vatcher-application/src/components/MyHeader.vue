@@ -26,19 +26,19 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 80px;
-  padding: 0 60px;
-  border-bottom: 1px solid var(--el-border-color);
+  height: 4.4444rem;
+  padding: 0 3.3333rem;
+  border-bottom: .0556rem solid var(--el-border-color);
 
   .left {
     .el-link {
-      margin: 0 15px;
+      margin: 0 .8333rem;
     }
   }
 
   .right {
     .el-link {
-      margin: 0 10px;
+      margin: 0 .5556rem;
     }
   }
 }
