@@ -1,4 +1,9 @@
-import foo from './foo.js'
-export default function () {
-    console.log(foo)
-}
+import gNet from './net.js'
+import gPer from './performance.js'
+
+addEventListener('load', () => {
+    window.d = {
+        net: gNet(),
+        performance: gPer()
+    }
+})
