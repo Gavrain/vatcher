@@ -21,14 +21,18 @@ export default {
   components: {
     MyMenu,
     MyHeader
+  },
+  mounted() {
+    console.log(document.body.scrollHeight);
   }
 }
 </script>
 
 <style lang="less" scoped>
 .common-layout {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  overflow: hidden;
 
   .el-container {
     height: 100%;

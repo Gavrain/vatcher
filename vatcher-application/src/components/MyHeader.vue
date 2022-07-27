@@ -33,12 +33,14 @@ export default {
   .left {
     .el-link {
       margin: 0 .8333rem;
+      font-size: .8889rem;
     }
   }
 
   .right {
     .el-link {
       margin: 0 .5556rem;
+      font-size: .8889rem;
     }
   }
 }

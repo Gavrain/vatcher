@@ -77,7 +77,7 @@ export default {
 <style lang="less" scoped>
 .Mymenu {
   height: 100%;
-  width: 13.8889rem;
+  width: 250px;
   background-color: #f1f3f7;
   border-right: .0556rem solid var(--el-border-color);
 
@@ -92,7 +92,7 @@ export default {
     display: flex;
     align-items: center;
     height: 2.7778rem;
-    padding-top: .8333rem;
+    padding-top: .5556rem;
     padding-left: 2.5rem;
 
     .menu-title {
