@@ -1,15 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <div class="common-layout">
+    <el-container>
+        <MyMenu></MyMenu>
+      <el-container class="right_box">
+          <MyHeader></MyHeader>
+        <el-main>Main</el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MyMenu from './components/MyMenu.vue'
+import MyHeader from './components/MyHeader.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    MyMenu,
+    MyHeader
   }
 }
 </script>
+
+<style lang="less" scoped>
+.common-layout {
+  width: 100vw;
+  height: 100vh;
+
+  .el-container {
+    height: 100%;
+  }
+
+  .right_box {
+    display: block;
+  }
+}
+</style>
