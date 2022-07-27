@@ -4,7 +4,9 @@
         <MyMenu></MyMenu>
       <el-container class="right_box">
           <MyHeader></MyHeader>
-        <el-main>Main</el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>

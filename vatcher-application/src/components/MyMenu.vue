@@ -4,38 +4,38 @@
       <el-icon><VideoCamera /></el-icon>
       <span class="menu-title">前端监控平台</span>
     </div>
-    <el-menu default-active="1" class="el-menu-vertical-demo">
-      <el-menu-item index="1">
+    <el-menu default-active="/survey" class="el-menu-vertical-demo" :router="true">
+      <el-menu-item index="/survey">
         <el-icon><Menu /></el-icon>
         <span>概况</span>
       </el-menu-item>
       <el-sub-menu index="2">
         <template #title>
           <el-icon><WarningFilled /></el-icon>
-          <span>异常与事件</span>
+          <span>异常</span>
         </template>
-        <el-menu-item index="2-1">脚本异常</el-menu-item>
-        <el-menu-item index="2-2">资源下载</el-menu-item>
-        <el-menu-item index="2-3">网络请求</el-menu-item>
-        <el-menu-item index="2-4">卡顿</el-menu-item>
+        <el-menu-item index="/abnormal">脚本异常</el-menu-item>
+        <el-menu-item index="">资源下载</el-menu-item>
+        <el-menu-item index="">网络请求</el-menu-item>
+        <el-menu-item index="">卡顿</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="3">
         <template #title>
           <el-icon><Platform /></el-icon>
-          <span>性能与访问</span>
+          <span>性能数据</span>
         </template>
-        <el-menu-item index="3-1">网络请求</el-menu-item>
-        <el-menu-item index="3-2">资源下载</el-menu-item>
-        <el-menu-item index="3-3">页面</el-menu-item>
-        <el-menu-item index="3-4">页面（路由）</el-menu-item>
+        <el-menu-item index="/performance">网络请求</el-menu-item>
+        <el-menu-item index="">资源下载</el-menu-item>
+        <el-menu-item index="">页面</el-menu-item>
+        <el-menu-item index="">页面（路由）</el-menu-item>
       </el-sub-menu>
-      <el-menu-item index="4">
+      <el-menu-item index="/behavior">
         <el-icon><List /></el-icon>
-        <span>日报</span>
+        <span>用户行为</span>
       </el-menu-item>
-      <el-menu-item index="5">
+      <el-menu-item index="/request">
         <el-icon><TrendCharts /></el-icon>
-        <span>趋势</span>
+        <span>HTTP请求</span>
       </el-menu-item>
       <el-sub-menu index="6">
         <template #title>
@@ -82,7 +82,7 @@ export default {
   border-right: 1px solid var(--el-border-color);
 
   // 修改下拉矩形框的样式
-  /deep/ ul.el-menu.el-menu--inline {
+  :deep(ul.el-menu.el-menu--inline) {
     padding: 10px 0 5px 0;
     border-radius: 5px;
   }
