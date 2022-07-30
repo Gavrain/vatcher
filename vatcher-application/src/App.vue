@@ -21,9 +21,6 @@ export default {
   components: {
     MyMenu,
     MyHeader
-  },
-  mounted() {
-    console.log(document.body.scrollHeight);
   }
 }
 </script>

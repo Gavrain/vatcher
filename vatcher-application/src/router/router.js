@@ -11,7 +11,7 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/survey' },
     { path: '/survey', component: Survey },
-    { path: '/abnormal', component: Abnormal },
+    { path: '/abnormal:id', props: true, component: Abnormal, },
     { path: '/performance', component: Performance },
     { path: '/behavior', component: Behavior },
     { path: '/request', component: Request }

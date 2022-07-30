@@ -14,10 +14,10 @@
           <el-icon><WarningFilled /></el-icon>
           <span>异常</span>
         </template>
-        <el-menu-item index="/abnormal">脚本异常</el-menu-item>
-        <el-menu-item index="">资源下载</el-menu-item>
-        <el-menu-item index="">网络请求</el-menu-item>
-        <el-menu-item index="">卡顿</el-menu-item>
+        <el-menu-item index="/abnormal1">js异常</el-menu-item>
+        <el-menu-item index="/abnormal2">接口异常</el-menu-item>
+        <el-menu-item index="/abnormal3">白屏异常</el-menu-item>
+        <el-menu-item index="/abnormal4">资源异常</el-menu-item>
       </el-sub-menu>
       <el-sub-menu index="3">
         <template #title>
