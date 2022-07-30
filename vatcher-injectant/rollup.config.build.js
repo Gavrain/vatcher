@@ -1,11 +1,11 @@
 import resolve from '@rollup/plugin-node-resolve'
 
 export default {
-    input: 'src/main.js',
+    input: 'injectant/main.js',
     output: {
-        file: 'dist/bundle.js',
+        file: 'bundle.js',
         format: 'iife',//立即执行函数
-        name: 'main',
+        name: 'injectant',
     },
     plugins: [
         resolve(),

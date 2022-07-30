@@ -1,9 +1,5 @@
-import gNet from './net.js'
-import gPer from './performance.js'
+import { createApp } from 'vue'
+import './style.css'
+import App from './index.vue'
 
-addEventListener('load', () => {
-    window.d = {
-        net: gNet(),
-        performance: gPer()
-    }
-})
+createApp(App).mount('#app')

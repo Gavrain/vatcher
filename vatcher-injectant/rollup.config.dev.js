@@ -8,9 +8,9 @@ import serve from 'rollup-plugin-serve'
 const env = process.env.NODE_ENV
 
 export default {
-    input: 'dev/src/main.js',
+    input: 'src/main.js',
     output: {
-        file: 'dev/bundle.js',
+        file: 'index.js',
         format: 'esm',
         sourcemap: true,
     },
@@ -27,7 +27,7 @@ export default {
         livereload(),
         serve({
             open: true,
-            contentBase: './dev',
+            contentBase: '',
             host: 'localhost',
             port: 8888,
             openPage: '/index.html',

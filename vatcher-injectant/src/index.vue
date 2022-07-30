@@ -6,22 +6,12 @@
 </template>
 
 <script>
-import '../../src/main.js'
-
 export default {
-	mounted() {
-		let i = setInterval(() => {
-			if (window.d) {
-				this.d = window.d
-				clearInterval(i)
-			}
-		}, 500)
-	},
 	data() {
 		return {
 			d: {
-				net: [],
-				performance: [],
+				net: { 1: 1 },
+				performance: { 2: 2 },
 			},
 		}
 	},
