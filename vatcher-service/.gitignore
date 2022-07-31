@@ -1,17 +1,17 @@
 # node_modules/
 
 # compiled output
-/dist
-/tmp
+dist
+tmp
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
-/.idea
+.idea
 .project
 .classpath
-.c9/
+.c9
 *.launch
-.settings/
+.settings
 *.sublime-workspace
