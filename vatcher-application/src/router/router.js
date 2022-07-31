@@ -12,7 +12,7 @@ const router = createRouter({
     { path: '/', redirect: '/survey' },
     { path: '/survey', component: Survey },
     { path: '/abnormal:id', props: true, component: Abnormal, },
-    { path: '/performance', component: Performance },
+    { path: '/performance:id', props:true, component: Performance, },
     { path: '/behavior', component: Behavior },
     { path: '/request', component: Request }
   ]

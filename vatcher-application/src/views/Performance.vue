@@ -1,185 +1,217 @@
 <template>
   <div class="Performance">
-    <div class="Phead">
-    <div id="front">
-        <div id="s1">
-        <select v-model="s1">
-           <option value="Td">今天</option>
-           <option value="m60">近60分钟</option>
-           <option value="h4">近4小时</option>
-           <option value="h6">近6小时</option>
-           <option value="h12">近12小时</option>
-           <option value="h24">近24小时</option>
-           <option value="d2">近2天</option>
-           <option value="d3">近3天</option>
-           <option value="d7">近7天</option>
-           <option value="d15">近15天</option>
-        </select>
+    <div class="head">
+      <div class="left">
+        <el-select class="days" placeholder="Select" v-model="value_day" clear-icon>
+          <template #prefix>
+            <el-icon style="color: black;"><Clock /></el-icon>
+          </template>
+          <el-option v-for="item in option_days" :key="item.value" :label="item.label" :value="item.value" style="display: flex; align-items: center;">
+              <el-icon><Clock /></el-icon>
+              <span style="padding: 0 0 0 .5556rem">{{ item.label }}</span>
+          </el-option>
+        </el-select>
+      </div>
+      <div class="right">
+        <el-input class="keywords" placeholder="请输入关键字" v-model="value_keywords" clear-icon/>
+        &nbsp;&nbsp;&nbsp;
+        <el-select class="time" placeholder="Select" v-model="value_time" clear-icon>
+          <template #prefix>
+            <el-icon style="color: black"><RefreshRight /></el-icon>
+          </template>
+          <el-option v-for="item in option_time" :key="item.value" :label="item.label" :value="item.value">
+            <el-icon><RefreshRight /></el-icon>
+            <span style="padding: 0 0 0 .5556rem">{{ item.label }}</span>
+          </el-option>
+        </el-select>
       </div>
     </div>
-    
-    <div id="behind">
-      <div id="i1">
-         <input v-model="i1" placeholder="输入关键字信息查找"/>
-      </div>
-	  
-	    <div id="s2">
-		    <select v-model="s2">
-			     <option value="s30">30s</option>
-			     <option value="s60">60s</option>
-			     <option value="s90">90s</option>
-			     <option value="s120">120s</option>
-			     <option value="m3">3m</option>
-			     <option value="m5">5m</option>
-			     <option value="m10">10m</option>
-		    </select>
-      </div>
-    </div>
-
-  </div>
-    
-    <div class="Pbody">
-	      <div id="p1" v-if="flag">
-          <p>无数据</p>
-        </div>
-	      <table class="t1" v-else>
-		       <thead>
-			       <tr id="tr1">
-               <td>标签</td>
-				       <th>数量</th>
-				       <th>Apdex</th>
-				       <th>用户数量</th>
-				       <th>FP</th>
-               <th>FCP</th>
-               <th>DOM Ready</th>
-               <th>DNS</th>
-			       </tr>
-		       </thead>
-		     <tbody>
-			      <tr border:5px v-for="(item,index) in flist" :key="index">
-				    <td>{{item.Tag}}</td>
-            <td>{{item.Nums}}</td>
-				    <td>{{item.Apdex}}</td>
-				    <td>{{item.Users}}</td>
-				    <td>{{item.FP}}</td>
-            <td>{{item.FCP}}</td>
-            <td>{{item.DOM_Ready}}</td>
-            <td>{{item.DNS}}</td>
-			      </tr>
-		     </tbody>
-	      </table>
+    <div class="body">
+      <el-table :data="getPerformanceData" empty-text="无数据">
+        <el-table-column prop="num" label="数量" width="180" />
+        <el-table-column prop="Apdex" label="Apdex " width="180" />
+        <el-table-column prop="userNum" label="用户数量" width="180"/>
+        <el-table-column prop="content" label="内容">
+        </el-table-column>
+      </el-table>
     </div>
   </div>
   
 </template>
 
 <script>
+import TrendChart from '../components/TrendChart.vue'
 export default {
   name: 'Performance',
-  data() {
-    return{
-     s1: 'h4',
-     i1: '',
-     s2: 'm3',
-	 flag: false,
-	 list:[
-		{
-        "Tag":"牛逼",
-        "Nums":40,
-		    "Apdex":'sb',
-		    "Users":78,
-		    "FP":"",
-        "FCP":"",
-        "DON_Ready":"",
-        "DNS":"",
-        "Time":'4h',
-        "Periods":'s30'
-	    },
-	    { "Tag":'哇哈哈',
-        "Nums":40,
-		    "Apdex":'sb',
-		    "Users":78,
-		    "FP":'',
-        "FCP":'',
-        "DON_Ready":'',
-        "DNS":"",
-        "Time":"60m",
-        "Periods":'s60'
-	    }
-	 ]
-	}
+  components: {
+    TrendChart
   },
-  computed:{
-    flist(){   //筛选：时间范围、关键字、时间长度
-         newList=this.list.filter(item=>item.Time==this.s1)
-         if(newList==undefined||newList==null||JSON.stringify(newList)===('[]'))
-         {
-          this.flag=true
-         }
-         else
-         {
-          this.flag=false
-         }
-         return newList
+  props: {
+    id: {
+      type: String,
+      required: true
+    }
+  },
+  computed: {
+    getPerformanceData() {
+      const data = this[`performanceData${this.id}`]
+      if (!data) return null
+      if (this.value_keywords === '') return data
+      return data.filter(item => JSON.stringify(item.content).includes(this.value_keywords))
+    }
+  },
+  data() {
+    return {
+      value_day: 3,
+      option_days: [
+        { value: 1, label: '今天' },
+        { value: 2, label: '近 60 分钟' },
+        { value: 3, label: '近 4 小时' },
+        { value: 4, label: '近 6 小时' },
+        { value: 5, label: '近 12 小时' },
+        { value: 6, label: '近 24 小时' },
+        { value: 7, label: '近 2 天' },
+        { value: 8, label: '近 3 天' },
+        { value: 8, label: '近 7 天' },
+        { value: 8, label: '近 1 天' }
+      ],
+      value_keywords:'',
+      value_time: 5,
+      option_time: [
+        { value: 1, label: '30s' },
+        { value: 2, label: '60s' },
+        { value: 3, label: '90s' },
+        { value: 4, label: '120s' },
+        { value: 5, label: '3m' },
+        { value: 6, label: '5m' },
+        { value: 7, label: '10m' }
+      ],
+      // 表格数据
+      performanceData1: [
+        {
+          id: 1,
+          num: 215,
+          lastTime: '20:09',
+          content: '张三',
+          userNum: 24,
+          Apdex:'1 0.5'
+        },
+        {
+          id: 2,
+          num: 215,
+          lastTime: '20:09',
+          content: '李四',
+          userNum: 24,
+          Apdex:'0.5 0.5'
+        },
+        {
+          id: 3,
+          num: 215,
+          lastTime: '20:09',
+          content: '王五',
+          userNum: 24,
+          Apdex:'0.5 0.25'
+        },
+        {
+          id: 4,
+          num: 215,
+          lastTime: '20:09',
+          content: '666',
+          userNum: 24,
+          Apdex:'0.25 0.25'
+        }
+      ],
+      performanceData2: [
+        {
+          id: 1,
+          num: 215,
+          lastTime: '20:09',
+          content: 'wwwwxxxxx',
+          userNum: 24,
+          Apdex:'0.67 0.5'
+        },
+        {
+          id: 2,
+          num: 215,
+          lastTime: '20:09',
+          content: 'wwwwxxxxx',
+          userNum: 24,
+          Apdex:'1 0.25'
+        }
+      ]
     }
   }
 }
 </script>
 
-<style lang='less' scoped>
-.Phead{
-  display:flex;
-  flex-flow: row,wrap;
-  justify-content:space-between;
-  width: 100%;
-  height: 1.1111rem;
-  padding:auto,0;
-}
-  
-#s1{
-    width:150%;
+<style lang="less" scoped>
+.head {
+  display: flex;
+  justify-content: space-between;
+  height: 2.2222rem;
+  padding: 0 2.7778rem 0 1.6667rem;
+
+  .left {
+    display: flex;
+    .days {
+      :deep(.el-input__wrapper) {
+        width: 7.7778rem;
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-flow:row,wrap;
+    justify-content: space-between;
+     
+    .keywords{
+      :deep(.el-input__wrapper) {
+        height:min-content;
+      }
+     }
+    .time {
+      :deep(.el-input__wrapper) {
+        width: 5.5556rem;
+      }
+    }
+  }
 }
 
-#behind{
-  display:flex;
-  flex-flow: row,wrap;
-  justify-content:space-between;
-}
-#i1{
-  display:block;
-  box-sizing:border-box;
-  padding-right:1.1111rem;
-}
+.body {
+  margin: .8333rem 1.6667rem 0;
+  border: .0556rem solid var(--el-border-color);
+  border-radius: .2778rem;
+  border-collapse: collapse;
 
-#s2{
-  display:block;
-  box-sizing:border-box;
-}
+  :deep(.el-table__header) {
+    th {
+      color: black;
+      background-color: #f1f3f7;
+    }
+  }
 
-.Pbody{
-  display:block;
-  box-sizing: border-box;
-	width:100%;
-  padding-top:1.4111rem;
-}
+  :deep(.el-scrollbar) {
+    overflow: scroll;
+    max-height: 44.4444rem;
 
-#p1{
-  text-align:center;
-  padding-top:6.1111rem;
-}
+    .el-table__body {
+      .el-table__row {
+        font-size: .8333rem;
+        height: 2.7778rem;
 
-#tr1{
-  background:#F1F3F7;
-}
-tr{
-  display: block;
-  border: 1px solid #F1F3F7;
-}
+        .el-table_1_column_3.el-table__cell .cell {
+          color: #519ef5;
+          white-space: nowrap;
+          cursor: pointer;
 
-th,td{
-  text-align: left;
-  font-size:0.7111rem;
-   width:10.4111rem;
-   height:1.4111rem;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+      }
+    }
+  }
 }
 </style>

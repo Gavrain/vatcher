@@ -24,10 +24,10 @@
           <el-icon><Platform /></el-icon>
           <span>性能数据</span>
         </template>
-        <el-menu-item index="/performance">网络请求</el-menu-item>
-        <el-menu-item index="">资源下载</el-menu-item>
-        <el-menu-item index="">页面</el-menu-item>
-        <el-menu-item index="">页面（路由）</el-menu-item>
+        <el-menu-item index="/performance1">网络请求</el-menu-item>
+        <el-menu-item index="/performance2">资源下载</el-menu-item>
+        <el-menu-item index="/performance3">页面</el-menu-item>
+        <el-menu-item index="/performance4">页面（路由）</el-menu-item>
       </el-sub-menu>
       <el-menu-item index="/behavior">
         <el-icon><List /></el-icon>
