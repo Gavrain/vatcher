@@ -211,16 +211,16 @@ export default {
         font-size: .8333rem;
         height: 2.7778rem;
         .Apdex-room{
-              display:"inline-flex";
-              align-items:"center"; 
-              font-family:"PingFang SC";
-              color:"rgb(255,255,255)";
-              background-color:"rgb(255,202,40)"; 
-              border-radius:"16px";
-              white-space:"nowrap";
-              vertical-align:"center";
-              justify-content:"center";
-              text-decoration:"none";
+              display:inline-flex;
+              align-items:center; 
+              font-family:PingFang SC;
+              color:white;
+              background-color:rgb(255,202,40); 
+              border-radius:10px;
+              white-space:nowrap;
+              vertical-align:center;
+              justify-content:center;
+              text-decoration:none;
           }
         .el-table_1_column_3.el-table__cell .cell {
           color: #519ef5;
