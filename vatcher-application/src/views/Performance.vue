@@ -29,14 +29,27 @@
     <div class="body">
       <el-table :data="getPerformanceData" empty-text="无数据">
         <el-table-column prop="num" label="数量" width="180" />
-        <el-table-column prop="Apdex" label="Apdex " width="180" />
+        <el-table-column prop="Apdex" label="Apdex " width="180">
+            <template #default="scope">
+            <div class="Apdex-room" >
+               <span>
+                 {{scope.row.Apdex.split(' ')[0]}}
+                 <sub>
+                  {{scope.row.Apdex.split(' ')[1]}}
+                 </sub>
+               </span>
+            </div>
+            </template>
+        </el-table-column>
         <el-table-column prop="userNum" label="用户数量" width="180"/>
         <el-table-column prop="content" label="内容">
+          <template #default="scope">
+            <a :href="scope.row.content" >{{scope.row.content}}</a>
+          </template>
         </el-table-column>
       </el-table>
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -92,7 +105,7 @@ export default {
           id: 1,
           num: 215,
           lastTime: '20:09',
-          content: '张三',
+          content: 'http://baidu.com',
           userNum: 24,
           Apdex:'1 0.5'
         },
@@ -100,7 +113,7 @@ export default {
           id: 2,
           num: 215,
           lastTime: '20:09',
-          content: '李四',
+          content: 'http://baidu.com',
           userNum: 24,
           Apdex:'0.5 0.5'
         },
@@ -108,7 +121,7 @@ export default {
           id: 3,
           num: 215,
           lastTime: '20:09',
-          content: '王五',
+          content: 'http://baidu.com',
           userNum: 24,
           Apdex:'0.5 0.25'
         },
@@ -116,7 +129,7 @@ export default {
           id: 4,
           num: 215,
           lastTime: '20:09',
-          content: '666',
+          content: 'http://baidu.com',
           userNum: 24,
           Apdex:'0.25 0.25'
         }
@@ -183,23 +196,32 @@ export default {
   border: .0556rem solid var(--el-border-color);
   border-radius: .2778rem;
   border-collapse: collapse;
-
+  
   :deep(.el-table__header) {
     th {
       color: black;
       background-color: #f1f3f7;
     }
   }
-
   :deep(.el-scrollbar) {
     overflow: scroll;
     max-height: 44.4444rem;
-
-    .el-table__body {
+   .el-table__body {
       .el-table__row {
         font-size: .8333rem;
         height: 2.7778rem;
-
+        .Apdex-room{
+              display:"inline-flex";
+              align-items:"center"; 
+              font-family:"PingFang SC";
+              color:"rgb(255,255,255)";
+              background-color:"rgb(255,202,40)"; 
+              border-radius:"16px";
+              white-space:"nowrap";
+              vertical-align:"center";
+              justify-content:"center";
+              text-decoration:"none";
+          }
         .el-table_1_column_3.el-table__cell .cell {
           color: #519ef5;
           white-space: nowrap;
@@ -209,7 +231,6 @@ export default {
             text-decoration: underline;
           }
         }
-
       }
     }
   }
