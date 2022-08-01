@@ -31,7 +31,7 @@
         <el-table-column prop="num" label="数量" width="180" />
         <el-table-column prop="Apdex" label="Apdex " width="180">
             <template #default="scope">
-            <div class="Apdex-room" >
+            <div class="Apdex-room1" >
                <span>
                  {{scope.row.Apdex.split(' ')[0]}}
                  <sub>
@@ -158,6 +158,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+*{
+  font-family:PingFang SC;
+}
 .head {
   display: flex;
   justify-content: space-between;
@@ -210,18 +213,23 @@ export default {
       .el-table__row {
         font-size: .8333rem;
         height: 2.7778rem;
-        .Apdex-room{
-              display:inline-flex;
-              align-items:center; 
-              font-family:PingFang SC;
-              color:white;
-              background-color:rgb(255,202,40); 
-              border-radius:10px;
-              white-space:nowrap;
-              vertical-align:center;
-              justify-content:center;
-              text-decoration:none;
-          }
+      }
+        .Apdex-room1{
+          display: inline-flex;
+          width:40%;
+          outline: 0;
+          color:white;
+          background-color:rgb(41, 230, 41);
+          font-size: 0.8125rem;
+          box-sizing: border-box;
+          align-items: center;
+          white-space: nowrap;
+          border-radius: 10px;
+          vertical-align: middle;
+          justify-content: center;
+          text-decoration: none;
+        }
+    }  
         .el-table_1_column_3.el-table__cell .cell {
           color: #519ef5;
           white-space: nowrap;
@@ -233,6 +241,4 @@ export default {
         }
       }
     }
-  }
-}
 </style>
