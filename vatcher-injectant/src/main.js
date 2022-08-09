@@ -1,9 +1,17 @@
-import gNet from './net.js'
-import gPer from './performance.js'
+import mPageView from "./module/pv"
+import mUnique from "./module/uv"
 
-addEventListener('load', () => {
-    window.d = {
-        net: gNet(),
-        performance: gPer()
-    }
-})
+const defaultConfig = {
+    pid: 'testpid',
+    target: 'http://localhost:3000',
+    sendResource: false,
+    enableConsoleTrace: false,
+    behavior: false,
+    useFmp: false,
+    enableSPA: false,
+}
+const config = Object.assign(defaultConfig, __vl.config)
+
+
+mPageView(config)
+mUnique(config)

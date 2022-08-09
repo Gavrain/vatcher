@@ -4,8 +4,8 @@
 	"description": "The JavaScript Code will inject into page monitored.",
 	"main": "main.js",
 	"scripts": {
-		"dev": "rollup -wc rollup.config.dev.js",
-		"build": "rollup -c rollup.config.build.js",
+		"dev": "cross-env NODE_ENV=development rollup -wc",
+		"build": "cross-env NODE_ENV=production rollup -c",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [
@@ -16,12 +16,13 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^13.3.0",
-		"@rollup/plugin-replace": "^4.0.0",
-		"@vue/compiler-sfc": "^3.2.37",
+		"@types/md5": "^2.3.2",
+		"cross-env": "^7.0.3",
+		"rollup-plugin-commonjs": "^10.1.0",
 		"rollup-plugin-livereload": "^2.0.5",
-		"rollup-plugin-postcss": "^4.0.2",
-		"rollup-plugin-serve": "^2.0.0",
-		"rollup-plugin-vue": "^6.0.0",
-		"vue": "^3.2.36"
+		"rollup-plugin-serve": "^2.0.0"
+	},
+	"dependencies": {
+		"md5": "^2.3.0"
 	}
 }
