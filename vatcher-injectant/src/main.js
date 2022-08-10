@@ -1,5 +1,17 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './index.vue'
+import mPageView from "./module/pv"
+import mUnique from "./module/uv"
 
-createApp(App).mount('#app')
+const defaultConfig = {
+    pid: 'testpid',
+    target: 'http://localhost:3000',
+    sendResource: false,
+    enableConsoleTrace: false,
+    behavior: false,
+    useFmp: false,
+    enableSPA: false,
+}
+const config = Object.assign(defaultConfig, __vl.config)
+
+
+mPageView(config)
+mUnique(config)
