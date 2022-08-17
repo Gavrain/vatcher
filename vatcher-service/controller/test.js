@@ -1,14 +1,15 @@
-//控制层
 /**
  * @description User Controller
  */
 
  const {
-    createTest,
-    getUserInfo,
-    updateTest,
+    createPlist,
+    getPlistInfo,
+    updatePlist,
     deleteTest,
-    queryAll
+    plistSelectWithTimer,
+    selectTimer,
+    updateTimer
 } = require('../server/test')
 const { SuccessModel, ErrorModel } = require('../model/ResModel')
 const {
@@ -24,21 +25,18 @@ const {
 
 /**
  * 用户注册或登录
- * @param {string} id 测试ID
- * @param {string} name 昵称
+ * @param {string} pid ID
+ * @param {int} time 时间戳
  * @param {string} merchine 机器
  * @param {string} avatar 头像
  */
-async function addTest({ id, name, merchine, avatar }) {
+async function addPlist({ pid,time }) {
     const userObj = {
-        id: randomString(16),
-        name,
-        merchine,
-        avatar,
-        createtime: formatRegDate()
+        pid,
+        time
     }
     try {
-        await createTest(userObj)
+        await createPlist(userObj)
         return new SuccessModel(userObj)
     } catch (ex) {
         console.error(ex.message, ex.stack)
@@ -54,9 +52,9 @@ async function addTest({ id, name, merchine, avatar }) {
  * @param {number} pageSize 每页条数 
  * @returns 
  */
-async function queryAllTest({ name, page, pageSize }) {
+async function queryAllTime({ time }) {
     try {
-        const result = await queryAll({ name, page, pageSize })
+        const result = await plistSelectWithTimer({ time })
         return new SuccessModel(result)
     } catch (ex) {
         console.error(ex.message, ex.stack)
@@ -69,9 +67,9 @@ async function queryAllTest({ name, page, pageSize }) {
  * @param {object} updateInfo 要修改的信息
  * @param {objcet} whereInfo 查询条件
  */
-async function updateTestInfo(updateInfo, whereInfo) {
+async function updatePlistInfo(pid, time) {
     try {
-        const result = await updateTest(updateInfo, whereInfo)
+        const result = await updatePlist(pid,time)
         return new SuccessModel({ result })
     } catch (ex) {
         console.error(ex.message, ex.stack)
@@ -80,8 +78,24 @@ async function updateTestInfo(updateInfo, whereInfo) {
 }
 
 
+
+/**
+ * 增加pv的值
+ * @param {int} pv
+ */
+async function updatePv(time,pv){
+    try {
+        const result = await updateTimer(time, pv)
+        return new SuccessModel({ result })
+    } catch (ex) {
+        console.error(ex.message, ex.stack)
+        return new ErrorModel(updateFailInfo)
+    }
+}
+
 module.exports = {
-    addTest,
-    queryAllTest,
-    updateTestInfo
+    addPlist,
+    queryAllTime,
+    updatePlistInfo,
+    updatePv
 }

@@ -2,9 +2,9 @@
  * @description 数据模型入口文件
  */
 
- const Test = require('./test')
+const { Plist, Timer } = require('./test')
 
- module.exports = {
-   Test
- }
- 
+module.exports = {
+  Plist,
+  Timer
+}
